@@ -1,4 +1,4 @@
-# List BASIC Pro ' LBP – Label BASIC+ Transpiler
+# List BASIC Pro / 'LBP' – Label BASIC Plus Transpiler
 A transpiler for a superset of 'List BASIC' as implemented by the X16 BASLOAD command / utility.
 
 **Status:** v1.0 RC1 (current program banner still prints “LBP IDENTITY TRANSPILER V0.2” – update that in `LBP.MAIN` when you’re ready.)  
