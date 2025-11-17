@@ -1,21 +1,21 @@
 # List BASIC Pro / 'LBP' – Label BASIC Plus Transpiler
 A transpiler for a superset of 'List BASIC' as implemented by the X16 BASLOAD command / utility.
 
-**Status:** v1.0 RC1 (current program banner still prints “LBP IDENTITY TRANSPILER V0.2” – update that in `LBP.MAIN` when you’re ready.)  
+**Status:** v1.0 RC1  
 **Target:** Commander X16 (LB → BASIC V2 via BASLOAD)  
-**Implementation language:** Label BASIC (LB)
+**Implementation language:** Label BASIC (LB) as supported by the X16 utility 'BASLOAD'
 
 ---
 
 ## Overview
 
 **LBP** is a **source‑to‑source transpiler** that converts a higher‑level dialect called **Label BASIC+ (LBP)** into **Label BASIC (LB)**.  
-LB is then fed to the Commander X16 ROM tool **BASLOAD**, which generates standard **Microsoft BASIC V2** with line numbers and 2‑character variable names.
+LB is then fed to the Commander X16 ROM tool **BASLOAD**, which generates standard **Microsoft/Commodore BASIC V2** with line numbers and 2‑character variable names.
 
 So the stack is:
 
 ```text
-LBP source  -->  LBP transpiler  -->  LB source  -->  BASLOAD  -->  BASIC V2
+LBP source  -->  LBP transpiler  -->  LB source  -->  BASLOAD  -->  Tokenised BASIC V2
 ```
 
 This program (LBP) is about making your source more **structured, readable, and maintainable**, while still ending up with plain old BASIC V2 at the end.
