@@ -381,7 +381,7 @@ It correctly handles:
 2. From BASIC:
 
    ```basic
-   LOAD "LBP.BAS",8
+   BASLOAD "LBP.BAS"
    RUN
    ```
 
@@ -418,4 +418,4 @@ Planned future enhancements include (but are not yet implemented in this code):
 
 ## License
 
-Use freely on the Commander X16 and beyond. Attribution is appreciated but not required.
+MIT License - see LICENSE.md file.
