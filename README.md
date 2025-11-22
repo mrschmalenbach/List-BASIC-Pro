@@ -160,6 +160,29 @@ Case is ignored for both NAME and VALUE.
 
 ### Supported options
 
+Options:
+
+| Option | Purpose | Default |
+|--------|----------|---------|
+| DEFINE | Use `#DEFINE` for numeric constants | ON |
+| REMPASS | Pass LBP comment/directive lines to output | OFF |
+| STRICT_ERR | Abort transpilation on structural error | OFF |
+
+### ✓ Robust file I/O  
+- Correct CBM-style EOF detection (ST & 64)  
+- Handles CR, LF, CRLF, or final line with no terminator  
+- Preserves blank lines  
+
+### ✓ Stacks and structural validation  
+- IF-stack with line tracking  
+- Loop-stack with type tracking and labelled entry/exit points  
+- Reports unterminated blocks at EOF  
+
+### ✓ Built-in boolean constants  
+Hard-wired (not #DEFINEs):
+- `FALSE = 0`
+- `TRUE  = -1     (all bits set, matches BASIC V2 truth semantics)`
+
 #### `DEFINE`
 Controls whether in‑range numeric constants and enums are emitted as `#DEFINE` or as assignments.
 
@@ -331,11 +354,17 @@ The handlers search the loop stack from the top down for the nearest matching lo
 
 ## Error handling & diagnostics
 
-The program uses:
+Error Handling
 
-- `LBP.LINE%` to track the current input line (LBP source line).
-- `IF.SP%` and `WH.SP%` as stack pointers for IFs and loops.
-- Line stacks `IF.LINE.STACK%()` and `WH.LINE.STACK%()` to report where a construct started.
+LBP detects a range of structural errors:
+- ELSE without matching IF
+- END IF without IF
+- WEND without WHILE
+- UNTIL without REPEAT
+- Unterminated blocks at EOF
+- Colon-shape errors on guarded lines
+- EXIT/CONTINUE with no matching loop
+- Output file and disk errors via channel 15
 - DOS status via `LBP.GET.DOS.STATUS` and channel 15 (`ST.CH%`) to report:
   - Error code
   - Error message
@@ -377,11 +406,11 @@ It correctly handles:
 
 ## How to run it (on X16)
 
-1. Copy `LBP.BAS` to your X16 disk/image.
+1. Copy `LBP.PRG` to your X16 disk/image.
 2. From BASIC:
 
    ```basic
-   BASLOAD "LBP.BAS"
+   LOAD "LBP.BAS"
    RUN
    ```
 
